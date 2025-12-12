@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VK Learning Platform</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --color-primary: #0077ff;
+      --color-primary-hover: #0056b3;
+      --color-success: #31a24c;
+      --color-warning: #ff9800;
+      --color-danger: #ff6b6b;
+      --color-bg: #f0f2f5;
+      --color-surface: #ffffff;
+      --color-text: #1a1a1a;
+      --color-text-light: #65676b;
+      --color-border: #ccc;
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --radius: 8px;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    .header {
+      background: linear-gradient(135deg, var(--color-primary) 0, #0056b3 100%);
+      color: white;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header h1 { font-size: 24px; margin-bottom: 5px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .nav-tabs {
+      display: flex;
+      gap: 0;
+      background: white;
+      box-shadow: var(--shadow);
+      border-bottom: 2px solid var(--color-border);
+      position: sticky;
+      top: 70px;
+      z-index: 99;
+    }
+    .nav-tab {
+      padding: 15px 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-light);
+      transition: all 0.3s;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+    }
+    .nav-tab.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .course-card {
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .course-header {
+      background: linear-gradient(135deg, var(--color-primary) 0, #0056b3 100%);
+      color: white;
+      padding: 20px;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .course-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+    .course-price { font-size: 16px; font-weight: bold; }
+    .course-body { padding: 16px; }
+    .course-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--color-primary-hover); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .stat-value { font-size: 28px; font-weight: bold; color: var(--color-primary); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>VK Learning Platform</h1>
+    <p>Complete guide to VK advertising and digital marketing</p>
+  </div>
+  
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('courses')">Courses</button>
+    <button class="nav-tab" onclick="switchTab('stats')">Statistics</button>
+    <button class="nav-tab" onclick="switchTab('about')">About</button>
+  </div>
+  
+  <div class="container">
+    <!-- COURSES TAB -->
+    <div id="courses" class="tab-content active">
+      <h2 style="margin-bottom: 20px;">Available Courses</h2>
+      <div class="course-grid">
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-title">VK Ads Fundamentals</div>
+            <div class="course-price">2,999 ₽</div>
+          </div>
+          <div class="course-body">
+            <p style="font-size: 13px; color: var(--color-text-light); margin-bottom: 12px;">Learn the basics of VK advertising platform and campaign setup.</p>
+            <div class="course-info">
+              <div><strong>15</strong> lessons</div>
+              <div><strong>2</strong> hours</div>
+            </div>
+            <button class="btn btn-primary">Enroll Now</button>
+          </div>
+        </div>
+        
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-title">Targeting & Analytics</div>
+            <div class="course-price">3,499 ₽</div>
+          </div>
+          <div class="course-body">
+            <p style="font-size: 13px; color: var(--color-text-light); margin-bottom: 12px;">Master audience targeting and campaign analytics.</p>
+            <div class="course-info">
+              <div><strong>20</strong> lessons</div>
+              <div><strong>3</strong> hours</div>
+            </div>
+            <button class="btn btn-primary">Enroll Now</button>
+          </div>
+        </div>
+        
+        <div class="course-card">
+          <div class="course-header">
+            <div class="course-title">ROI Optimization</div>
+            <div class="course-price">3,999 ₽</div>
+          </div>
+          <div class="course-body">
+            <p style="font-size: 13px; color: var(--color-text-light); margin-bottom: 12px;">Boost your campaign ROI with advanced optimization techniques.</p>
+            <div class="course-info">
+              <div><strong>25</strong> lessons</div>
+              <div><strong>4</strong> hours</div>
+            </div>
+            <button class="btn btn-primary">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- STATS TAB -->
+    <div id="stats" class="tab-content">
+      <h2 style="margin-bottom: 20px;">Your Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Completed Courses</div>
+          <div class="stat-value">5</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Campaigns</div>
+          <div class="stat-value">12</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Conversions</div>
+          <div class="stat-value">1,245</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Average ROI</div>
+          <div class="stat-value">320%</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ABOUT TAB -->
+    <div id="about" class="tab-content">
+      <h2 style="margin-bottom: 20px;">About Platform</h2>
+      <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <h3 style="margin-bottom: 16px;">VK Learning Platform</h3>
+        <p style="margin-bottom: 12px;">Complete educational platform for mastering VK (VKontakte) advertising and digital marketing strategies.</p>
+        <p style="margin-bottom: 12px;"><strong>Features:</strong></p>
+        <ul style="margin-left: 20px; margin-bottom: 12px;">
+          <li>Comprehensive video courses</li>
+          <li>Real-world case studies</li>
+          <li>Interactive exercises</li>
+          <li>Expert support</li>
+          <li>Lifetime access</li>
+        </ul>
+        <p>Join thousands of digital marketers who have improved their skills with our platform.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function switchTab(tabName) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.nav-tab');
+      
+      tabs.forEach(tab => tab.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
